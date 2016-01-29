@@ -43,10 +43,10 @@ public class TestClassGenerator extends JavaClassGenerator {
 				);
 
 		this.clazz = clazz;
-		// aggiunta dei test
+		// aggiunta delle fixture
 		for (FixtureSignature fix: clazz.getFixtures())
 			fix.createFixture(this);
-		// aggiunta delle fixture
+		// aggiunta dei test
 		for (TestSignature test: clazz.getTests())
 			test.createTest(this);
 		
@@ -93,10 +93,10 @@ public class TestClassGenerator extends JavaClassGenerator {
 		iList.append(getFactory().createNew(Type.STRINGBUFFER));
 		//tramite DUP viene duplicata la cima dello stack
 		iList.append(InstructionFactory.DUP);
-		//classpool contiene la tabella delle costanti della classe corrente
+		//constant pool contiene la tabella delle costanti della classe corrente
 		iList.append(new LDC(getConstantPool().
 				addString("\n \n \nTest execution for class " + this.clazz.getName() + "\n")));
-		//creo una INVOKESPECIAL tramite createInvoke(nome_classe, nome, tipo_ritorno, tipo_argomenti, tipo_invoke)
+		//creo una INVOKESPECIAL tramite createInvoke(nome_classe, nome_metodo chiamato, tipo_ritorno, argomenti_metodo, tipo_invoke)
 		iList.append(getFactory().createInvoke("java.lang.StringBuffer", "<init>",
 	                Type.VOID, new Type[]{Type.STRING},
 	                Constants.INVOKESPECIAL));

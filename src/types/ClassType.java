@@ -61,13 +61,13 @@ public final class ClassType extends ReferenceType {
 	private final Set<ConstructorSignature> constructors = new HashSet<>();
 	
 	/**
-	 * The set of fixtures signatures in this class.
+	 * Creo un hashset delle signature delle fixtures presenti all'interno della classe
 	 */
 
 	private Set<FixtureSignature> fixtures = new HashSet<>();
 	
 	/**
-	 * The set of tests signatures in this class.
+	 * Creo un hashset dei test nella classe.
 	 */
 
 	private Set<TestSignature> tests = new HashSet<>();
@@ -312,10 +312,10 @@ public final class ClassType extends ReferenceType {
 	
 	
 	/**
-	 * Adds a fixture to this class. If a fixture with the given
-	 * signature already existed, it is overwritten.
+	 * Aggiunge una fixture all'interno della classe. Se ne esiste
+	 * una omomnima, essa viene sovrascritta
 	 *
-	 * @param cSig the signature of the fixture
+	 * @param cSig signatura della fixture
 	 */
 	
 	public void addFixture(FixtureSignature cSig) {
@@ -324,8 +324,8 @@ public final class ClassType extends ReferenceType {
 	}
 	
 	/**
-	 * Adds a test to this class. If a test with the given
-	 * signature already existed, it is overwritten.
+	 * Aggiunge un test a questa classe. Se ne esiste
+	 * uno omonimo esso viene sovrascritto.
 	 *
 	 */
 
@@ -364,7 +364,7 @@ public final class ClassType extends ReferenceType {
 	}
 
 	/**
-	 * Yields the tests of this class.
+	 * Ritorna i test della classe
 	 *
 	 * @return the methods
 	 */
@@ -374,7 +374,7 @@ public final class ClassType extends ReferenceType {
 	}
 
 	/**
-	 * Yields the fixtures of this class.
+	 * Ritorna le fixtures della classe
 	 *
 	 * @return the methods
 	 */
@@ -522,12 +522,12 @@ public final class ClassType extends ReferenceType {
 	}
 
 	/**
-	 * Looks up from this class for the signature of the test
-	 * with exactly the given name, if any.
+	 * Se esiste la signature del test con il nome fornito come parametro,
+	 * viene ritornata la signature corrispondente.
 	 *
-	 * @param name the name of the test to look up for
-	 * @return the signature of the test, as defined in this class.
-	 * 		   Yields {@code null} if no such method has been found
+	 * @param name Il nome del test ricercato
+	 * @return La signature del test come definita in questa classe.
+	 * 		   Viene ritornato {@code null} se il metodo non viene trovato.
 	 */
 
 	public final TestSignature testLookup(String name) {
@@ -543,10 +543,10 @@ public final class ClassType extends ReferenceType {
 	
 	
 	/**
-	 * Looks up from this class for the signatures of all fixtures, if any.
+	 * Ricerca all'interno della classe le signature di tutte le fixture, se esistono.
 	 * 
-	 * @return the signature of the resulting signatures.
-	 *         Returns an empty set if no signature has been found
+	 * @return Set 	Un set contenente le signature di tutte le fixture, vuoto se nessuna
+	 * 		   		viene trovata.
 	 */
 	public final Set<FixtureSignature> fixtureLookup() {
 		return fixtures;
