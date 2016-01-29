@@ -1,0 +1,42 @@
+class UnTest {
+    
+    /* -- FIELDS -- */
+    
+    field String msg
+    
+    constructor(){}
+    
+    /* -- METHODS -- */
+    
+    method void sayHello()
+        "hello".output()
+    
+    method void sayMsg()
+        this.msg.output()
+
+
+    /* -- TESTS & FIXTURES -- */
+    
+    test vero
+        assert(this.msg.equals("PROVA123"))
+    
+    test falso
+        assert(this.msg.equals("ERRORE"))
+  
+    fixture
+        this.msg := "PROVA123"
+
+    fixture
+        " fix1 ".output()
+
+    fixture
+        " fix2 ".output()
+
+    
+    /* -- MAIN -- */
+    method void main(){
+        "ultimo".output()
+    }
+    
+        
+}

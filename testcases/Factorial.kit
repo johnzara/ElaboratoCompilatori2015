@@ -1,0 +1,13 @@
+class Factorial {
+  constructor() {}
+
+  method void main() {
+    Factorial l0 := new Factorial();
+    l0.fact(10)
+  }
+
+  method int fact(int x)
+    if (x <= 0) then return 1
+    else return 1 + this.fact(x - 1)
+
+}

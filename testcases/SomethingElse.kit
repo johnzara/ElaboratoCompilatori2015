@@ -1,0 +1,48 @@
+class UnAltroTest extends UnTest{
+    
+    /* -- FIELDS -- */
+    
+    field int val2
+    field String msg2
+    
+    constructor(){}
+    
+    /* -- METHODS -- */
+    
+     method void sayHello()
+        "bonjour".output()
+    
+    method void sayMsg2()
+        this.msg.output()
+
+
+    /* -- TESTS & FIXTURES -- */
+    
+    test testuno
+        assert(this.msg.equals("PROVA123"))
+    
+    test test_errore
+        assert(this.msg2.equals("ERRORE"))
+    
+    test messages {
+        UnTest s := new UnTest();
+        s.msg := new String(this.msg2);
+        assert(this.msg2.equals(s.msg))
+    }
+  
+    fixture
+        this.msg := "PROVA123"
+        
+    fixture
+        this.msg2 := "ERRORE"
+    
+
+    /* -- MAIN -- */
+    method void main(){
+        UnTest s := new UnTest();
+        s.msg := "ciao";
+        "ultimo\n".output()
+    }
+    
+        
+}

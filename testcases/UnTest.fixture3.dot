@@ -1,0 +1,4 @@
+digraph "UnTest.fixture3" {
+size = "11,7.5";
+codeblock_13 [ shape = box, label = "block 13\nload 0 of type UnTest\nnewstring PROVA123\nputfield UnTest.msg:String\nreturn void"];
+}

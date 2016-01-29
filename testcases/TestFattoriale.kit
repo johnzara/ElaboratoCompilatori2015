@@ -1,0 +1,49 @@
+class TestFattoriale {
+
+    constructor() {}
+    
+    test fatt_0
+        assert(this.calc(0) = 1)
+    
+    test fatt_1
+        assert(this.calc(1) = 1)
+
+    test fatt_4
+        assert(this.calc(4) = 24)
+        
+    test fatt_10
+        assert(this.calc(10) = 3628800)
+        
+    test ko
+        assert(this.calc(100) != this.calc(100))
+    
+    test ok
+        assert(this.calc(100) = this.calc(100))
+        
+    test stringhe {
+        "ciao\n".output();
+        "ciao\n".output();
+        "ciao\n".output();
+        assert(this.calc(100) != this.calc(100))
+        
+    }
+        
+    method int calc(int n) {
+        int i := 0;
+        int res := 1;
+        if(n <= 1) then return 1
+        else for(i := 1; i <= n; i := i + 1)
+            res := res * i;
+        return res
+    }
+    
+    method void main() {
+        String s := new String();
+        "Insert a relatively small number: ".output();
+        s := "5";
+        "Fattoriale(".concat(s).concat(") = ".concat
+            (new TestFattoriale().calc(s.toInt()))).output();
+            "\n".output()
+    }
+
+}
