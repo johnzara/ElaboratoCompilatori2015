@@ -68,24 +68,26 @@ public class TestSignature extends CodeSignature {
     public void createTest(TestClassGenerator classGen) {
 		MethodGen methodGen;
 		methodGen = new MethodGen
-		(Constants.ACC_PRIVATE | Constants.ACC_STATIC, // private and static
+		(Constants.ACC_PRIVATE | Constants.ACC_STATIC, // Privato e Statico
 		//org.apache.bcel.generic.Type.getType(runTime.String), // return type
 		new org.apache.bcel.generic.ObjectType(runTime.String.class.getName()),
 		new org.apache.bcel.generic.Type[]{getDefiningClass().toBCEL()},
-		null, // parameters names: we do not care
-		getName(), // method's name
-		classGen.getClassName(), // defining class
-		classGen.generateJavaBytecode(getCode()), // bytecode of the method
+		null, // Nomi dei parametri, non importanti
+		getName(), // nomi dei metodi
+		classGen.getClassName(), // definizione della classe
+		classGen.generateJavaBytecode(getCode()), // bytecode del metodo
 		classGen.getConstantPool()
-		); // constant pool
+		); // costanti
     
-		// we must always call these methods before the getMethod()
-		// method below. They set the number of local variables and stack
-		// elements used by the code of the method
+		/*
+		 * Questi metodi devono essere chiamati prima del getMethod().
+		 * Servono per settare i numeri delle variabili locali e degli elementi dello stack
+		 * usati dal codice del metodo
+		 */
 		methodGen.setMaxStack();
 		methodGen.setMaxLocals();
 
-		// we add a method to the class that we are generating
+		//Aggiungiamo il metodo alla classe che stiamo generando.
 		classGen.addMethod(methodGen.getMethod());
     }
     
