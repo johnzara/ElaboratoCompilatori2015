@@ -94,6 +94,7 @@ public class TestClassGenerator extends JavaClassGenerator {
 		//tramite DUP viene duplicata la cima dello stack
 		iList.append(InstructionFactory.DUP);
 		//constant pool contiene la tabella delle costanti della classe corrente
+		//LDC -> push item from constant pool
 		iList.append(new LDC(getConstantPool().
 				addString("\n \n \nTest execution for class " + this.clazz.getName() + "\n")));
 		//creo una INVOKESPECIAL tramite createInvoke(nome_classe, nome_metodo chiamato, tipo_ritorno, argomenti_metodo, tipo_invoke)
@@ -113,25 +114,32 @@ public class TestClassGenerator extends JavaClassGenerator {
 	                Type.STRINGBUFFER, new Type[]{Type.STRING},
 	                Constants.INVOKEVIRTUAL));
 
-			// creo il test
+			// creo il test che ritornerà una stringa Kitten
 			ilTest.append(finalTest(test, clazz.getFixtures()));
-			// risultato
+			// invoco la toString() che consuma la stringa Kitten e ritorna una stringa Java
 			ilTest.append(getFactory().createInvoke("runTime/String", "toString",
                 Type.STRING, Type.NO_ARGS,
 	                Constants.INVOKEVIRTUAL));
+			//duplico la stringa
 			ilTest.append(InstructionFactory.DUP);
-
+			//aggiungo la stringa "passed" alla constant pool e la carico sullo stack con LDC
+			//confronto il risultato dell'esecuzione del test ritornato dall'assert con la stringa "passed"
+			//se già presente ne ritorno solo il riferimento
 			ilTest.append(new LDC(getConstantPool().addString("passed")));
+			//chiamo equals su String, che ritorna 1 se gli argomenti sono uguali, altrimenti 0
 			ilTest.append(getFactory().createInvoke("java/lang/String", "equals",
 	                Type.BOOLEAN, new Type[]{Type.OBJECT},
 	                Constants.INVOKEVIRTUAL));
 		
-			//aumento il contatore
+			//carico il contatore sullo stack
 			ilTest.append(new ILOAD(count.getIndex()));
+			//sommo i valori
 			ilTest.append(InstructionFactory.IADD);
+			//salvo il valore nel conatore
 			ilTest.append(new ISTORE(count.getIndex()));
 						
 			// concateno il test del risultato con stringbuffer
+			// stringa risultante
 			ilTest.append(getFactory().createInvoke("java.lang.StringBuffer", "append",
 	                Type.STRINGBUFFER, new Type[]{Type.STRING},
 	                Constants.INVOKEVIRTUAL));
