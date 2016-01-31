@@ -252,6 +252,9 @@ public class TestClassGenerator extends JavaClassGenerator {
 		il.append(end, dopo);
 	}
 	
+	/*
+		Associo le fixture della classe al test passato come parametro
+	*/
 	private InstructionList finalTest(TestSignature test, Set<FixtureSignature> fixtures) {
 		InstructionList il = new InstructionList();
 		
@@ -265,7 +268,7 @@ public class TestClassGenerator extends JavaClassGenerator {
 		// stack:	obj
 		//				obj
 
-		// chiamo il costruttore
+		// creo un oggetto O di tipo C
 		il.append(getFactory().createInvoke(
 				this.clazz.getName(), 
 				"<init>", 
@@ -275,6 +278,7 @@ public class TestClassGenerator extends JavaClassGenerator {
 		));
 		// stack:	obj
 		
+		//chiama ogni fixture di tipo C passando O come parametro
 		for (FixtureSignature fixture: clazz.getFixtures()) {		
 			// dup
 			il.append(InstructionFactory.DUP);
@@ -289,7 +293,7 @@ public class TestClassGenerator extends JavaClassGenerator {
 			));
 		}
 		
-		// chiamo il test
+		// chiamo il test passando O come parametro
 		il.append(getFactory().createInvoke(
 				this.clazz.getName() + "Test", 
 				test.getName(), 

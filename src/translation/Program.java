@@ -211,14 +211,15 @@ public class Program {
 			}
 	}
 
-	/**
-	 * Generates the Java bytecode for all the test class types and dumps the
-	 * relative {@code .class} files on the file system.
-	 */
+	
+	/*
+		Per ogni classe con almeno un test creo un oggetto di tipo testClassGenerator.
+		Salvo il file .class relativo sul file system
+	*/
 
 	public void generateJavaBytecodeForTest() {
-		// we consider one class at the time and we generate its Java bytecode
-		// concateniamo il nome della classe con il test
+		// considero una classe alla volta e genero il suo Java bytecode
+		// concateno il nome della classe con il test
 		for (ClassType clazz : ClassType.getAll()) {
 
 			if (clazz.getTests().isEmpty())
