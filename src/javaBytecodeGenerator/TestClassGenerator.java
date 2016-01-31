@@ -127,6 +127,10 @@ public class TestClassGenerator extends JavaClassGenerator {
 			//se già presente ne ritorno solo il riferimento
 			ilTest.append(new LDC(getConstantPool().addString("passed")));
 			//chiamo equals su String, che ritorna 1 se gli argomenti sono uguali, altrimenti 0
+			//equals viene eseguita sui primi due valori dello stack, contenenti il risultato del test e la stringa "passed"
+			//stack:	passed
+			//				passed
+			//equals = 1
 			ilTest.append(getFactory().createInvoke("java/lang/String", "equals",
 	                Type.BOOLEAN, new Type[]{Type.OBJECT},
 	                Constants.INVOKEVIRTUAL));
@@ -135,7 +139,7 @@ public class TestClassGenerator extends JavaClassGenerator {
 			ilTest.append(new ILOAD(count.getIndex()));
 			//sommo i valori
 			ilTest.append(InstructionFactory.IADD);
-			//salvo il valore nel conatore
+			//salvo il valore nel contatore
 			ilTest.append(new ISTORE(count.getIndex()));
 						
 			// concateno il test del risultato con stringbuffer
