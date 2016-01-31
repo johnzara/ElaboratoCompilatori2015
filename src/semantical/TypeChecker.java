@@ -40,11 +40,9 @@ public class TypeChecker {
 
 	private final ErrorMsg errorMsg;
 	
-	/**
-	 * The capability to contain assert command
-	 * @HasGetter
-	 * @HasSetter 
-	 */
+	/*
+		Variabile che rappresenta la possibilità di eseguire un'assert
+	*/
 	private final boolean assertAllowed;
 
 	/**
@@ -184,11 +182,10 @@ public class TypeChecker {
 		return errorMsg.anyErrors();
 	}
 	
-	/**
-	 * Yields the type expected by this type-checker for the {@code return} commands.
-	 *
-	 * @return the type expected by this type-checker for the {@code return} commands
-	 */
+
+	/*
+		Ritorno la possibilità di eseguire un'assert
+	*/
 
 	public boolean isAssertAllowed() {
 		return assertAllowed;

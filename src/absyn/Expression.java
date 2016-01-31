@@ -209,21 +209,14 @@ public abstract class Expression extends Absyn {
 		return translate(continuation);
 	}
 
-	/**
-	 * Translates this expression by assuming that it has {@code boolean} type.
-	 * This must have been guaranteed by a previous type-checking.
-	 * Depending on the truth of that {@code boolean} value, control is routed
-	 * to one of two possible destinations, through an {@code if_true}
-	 * bytecode. Subclasses may redefine to get more improved code.
-	 *
-	 * @param yes the continuation that is the <i>yes</i> destination
-	 * @param no the continuation that is the <i>no</i> destination
-	 * @return the code that evaluates the expression and, on the basis
-	 *         of its {@code boolean} value, routes the computation to the
-	 *         {@code yes} or {@code no} continuation, respectively
-	 */
-	
-	//viene instradato il controllo in uno dei possibili risultati da assert tramite il bytecode IF_TRUE()
+	/*
+	Traduco questa espressione assumendo che abbia tipo boolean, garantito dal precedente type-checking.
+	In base al risultato del valore booleano, il controllo viene instradato ad una delle possibili 
+	destinazioni, attraverso un bytecode IF_TRUE(). Le sottoclassi possono reimplementare tale metodo.
+	Viene ritornato il codice che valuta l'espressione e, in base al valore booleano, dirotta il calcolo 
+	alle continuazioni yes oppure no.
+
+	*/
 	public Block translateAsTest(Block yes, Block no) {
 		return translate(new Block(new IF_TRUE(), yes, no));
 	}

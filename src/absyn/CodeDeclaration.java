@@ -173,13 +173,9 @@ public abstract class CodeDeclaration extends ClassMemberDeclaration {
     		translateReferenced(follow, done, blocksDone);
     }
     
-    /**
-     * Auxiliary method that translates into Kitten bytecode the fixtures, the test
-     * and the constructors of the given class.
-     *
-     * @param clazz the type of the class
-     * @param done the class member signatures already translated
-     */
+     /* Traduco in Kitten bytecode le fixture, i test e i costruttori della classe
+    passata come parametro
+    */
 
     protected void translateAux(ClassType clazz, Set<ClassMemberSignature> done) {
     	for(FixtureSignature cms : clazz.getFixtures()){
