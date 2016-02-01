@@ -278,7 +278,7 @@ public class TestClassGenerator extends JavaClassGenerator {
 		));
 		// stack:	obj
 		
-		//chiama ogni fixture di tipo C passando O come parametro
+		//chiama ogni fixture di C passando O come parametro
 		for (FixtureSignature fixture: clazz.getFixtures()) {		
 			// dup
 			il.append(InstructionFactory.DUP);
